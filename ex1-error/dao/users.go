@@ -2,9 +2,9 @@ package dao
 
 import (
 	"database/sql"
-	"example.com/hello/dao/db"
-	"example.com/hello/entity"
-	"example.com/hello/errors"
+	"example.com/hello/ex1-error/dao/db"
+	"example.com/hello/ex1-error/entity"
+	"example.com/hello/ex1-error/errors"
 )
 
 // 在很多场景下，找不到对应的记录是很正常的现象
@@ -22,10 +22,10 @@ func GetOne(id int) (user *entity.User,err error) {
 	if err!=nil {
 		// 屏蔽数据库层的error
 		if err == sql.ErrNoRows {
-			return nil,errors.NotFound
+			return nil, errors.NotFound
 		}
 		// 包装错误类型
-		return nil,errors.Wrap(err,"users - GetOne",500)
+		return nil, errors.Wrap(err,"users - GetOne",500)
 	}
 	return
 }

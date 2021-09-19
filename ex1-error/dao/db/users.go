@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"example.com/hello/entity"
+	"example.com/hello/ex1-error/entity"
 )
 
 // SelectById 模拟数据库框架返回error

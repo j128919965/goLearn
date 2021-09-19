@@ -1,5 +1,5 @@
-# goLearn
-由于本人初学golang，所以对golang的工程应用及其规范了解较少
-本次作业我模拟了一个搜索用户的场景，dao层屏蔽底层的error（可能为数据库、或其他中间件）
-业务代码层面屏蔽了NotFound错误
-但不能忽略其他错误
+第二次作业在ex2-httpserver文件夹下
+
+程序运行1s后自动停止（在errgroup里返回一个err，用于模拟出错）
+
+或手动kill / ctrl+c , 也可成功退出两个server

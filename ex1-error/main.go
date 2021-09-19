@@ -1,7 +1,7 @@
 package main
 
 import (
-	"example.com/hello/service"
+	"example.com/hello/ex1-error/service"
 	"fmt"
 )
 
