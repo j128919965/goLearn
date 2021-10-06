@@ -7,6 +7,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"quezr.top/demoweb/internal/controller"
 	"quezr.top/demoweb/internal/data"
 	"quezr.top/demoweb/internal/server"
 	"quezr.top/demoweb/internal/service"
@@ -21,6 +22,8 @@ func initApp() (*gin.Engine, error) {
 	}
 	userRepo := data.NewUserRepo(dataData)
 	userService := service.NewUserService(userRepo)
-	engine := server.NewHttpSerever(userService)
+	userController := controller.NewUserController(userService)
+	v := controller.Controllers(userController)
+	engine := server.NewHttpSerever(v)
 	return engine, nil
 }

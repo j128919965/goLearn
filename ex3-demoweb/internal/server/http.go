@@ -1,19 +1,27 @@
 package server
 
 import (
-   "fmt"
-   "github.com/gin-gonic/gin"
-   "log"
-   "quezr.top/demoweb/internal/service"
+    "github.com/gin-gonic/gin"
+    "quezr.top/demoweb/internal/controller"
 )
 
-func NewHttpSerever(userService *service.UserService) *gin.Engine{
+func NewHttpSerever(controllers []controller.Controller) *gin.Engine{
    engine := gin.Default()
-   engine.GET("/user", func(context *gin.Context) {
-      _, err := context.Writer.WriteString(fmt.Sprintf("%v",userService.GetOne(context,1)))
-      if err != nil {
-         log.Println("err - ",err)
+
+   for _, oneController := range controllers {
+      for s, handlerFunc := range oneController.Gets() {
+        engine.GET(s,handlerFunc)
       }
-   })
+      for s, handlerFunc := range oneController.Posts() {
+        engine.POST(s,handlerFunc)
+      }
+      for s, handlerFunc := range oneController.Puts() {
+        engine.PUT(s,handlerFunc)
+      }
+      for s, handlerFunc := range oneController.Deletes() {
+        engine.DELETE(s,handlerFunc)
+      }
+   }
+
    return engine
 }
